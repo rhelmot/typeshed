@@ -1,5 +1,6 @@
+from _typeshed import Incomplete
 from collections.abc import Mapping
-from typing import Any, TypeVar, overload
+from typing import TypeVar, overload
 from typing_extensions import Literal
 
 from networkx.classes.digraph import DiGraph
@@ -20,29 +21,29 @@ def relabel_nodes(G: MultiGraph[_X], mapping: Mapping[_X, _Y], copy: bool = ...)
 def relabel_nodes(G: MultiDiGraph[_X], mapping: Mapping[_X, _Y], copy: bool = ...) -> MultiDiGraph[_X | _Y]: ...
 @overload
 def convert_node_labels_to_integers(
-    G: Graph[Any],
+    G: Graph[Incomplete],
     first_label: int = ...,
     ordering: Literal["default", "sorted", "increasing degree", "decreasing degree"] = ...,
-    label_attribute: Any | None = ...,
+    label_attribute: Incomplete | None = ...,
 ) -> Graph[int]: ...
 @overload
 def convert_node_labels_to_integers(
-    G: DiGraph[Any],
+    G: DiGraph[Incomplete],
     first_label: int = ...,
     ordering: Literal["default", "sorted", "increasing degree", "decreasing degree"] = ...,
-    label_attribute: Any | None = ...,
+    label_attribute: Incomplete | None = ...,
 ) -> DiGraph[int]: ...
 @overload
 def convert_node_labels_to_integers(
-    G: MultiGraph[Any],
+    G: MultiGraph[Incomplete],
     first_label: int = ...,
     ordering: Literal["default", "sorted", "increasing degree", "decreasing degree"] = ...,
-    label_attribute: Any | None = ...,
+    label_attribute: Incomplete | None = ...,
 ) -> MultiGraph[int]: ...
 @overload
 def convert_node_labels_to_integers(
-    G: MultiDiGraph[Any],
+    G: MultiDiGraph[Incomplete],
     first_label: int = ...,
     ordering: Literal["default", "sorted", "increasing degree", "decreasing degree"] = ...,
-    label_attribute: Any | None = ...,
+    label_attribute: Incomplete | None = ...,
 ) -> MultiDiGraph[int]: ...
