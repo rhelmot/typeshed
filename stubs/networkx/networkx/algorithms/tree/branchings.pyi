@@ -1,8 +1,20 @@
 from _typeshed import Incomplete
+from collections.abc import Iterator
 from typing import Generic
 
 from networkx.classes.graph import _Node
 from networkx.classes.multidigraph import MultiDiGraph
+
+__all__ = [
+    "branching_weight",
+    "greedy_branching",
+    "maximum_branching",
+    "minimum_branching",
+    "maximum_spanning_arborescence",
+    "minimum_spanning_arborescence",
+    "ArborescenceIterator",
+    "Edmonds",
+]
 
 def branching_weight(G, attr: str = "weight", default: int = 1): ...
 def greedy_branching(G, attr: str = "weight", default: int = 1, kind: str = "max", seed: Incomplete | None = None): ...
@@ -65,5 +77,5 @@ class ArborescenceIterator:
     init_partition: Incomplete
     def __init__(self, G, weight: str = "weight", minimum: bool = True, init_partition: Incomplete | None = None) -> None: ...
     partition_queue: Incomplete
-    def __iter__(self): ...
+    def __iter__(self) -> Iterator[Incomplete]: ...
     def __next__(self): ...

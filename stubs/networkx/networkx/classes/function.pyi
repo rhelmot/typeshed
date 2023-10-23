@@ -1,10 +1,52 @@
 from _typeshed import Incomplete
-from collections.abc import Iterable
-from typing import Any, TypeVar, overload
+from collections.abc import Hashable, Iterable
+from typing import TypeVar, overload
 from typing_extensions import Literal
 
 from networkx.classes.graph import Graph
+from networkx.classes.graphviews import subgraph_view as subgraph_view
 
+__all__ = [
+    "nodes",
+    "edges",
+    "degree",
+    "degree_histogram",
+    "neighbors",
+    "number_of_nodes",
+    "number_of_edges",
+    "density",
+    "is_directed",
+    "freeze",
+    "is_frozen",
+    "subgraph",
+    "subgraph_view",
+    "induced_subgraph",
+    "reverse_view",
+    "edge_subgraph",
+    "restricted_view",
+    "to_directed",
+    "to_undirected",
+    "add_star",
+    "add_path",
+    "add_cycle",
+    "create_empty_copy",
+    "set_node_attributes",
+    "get_node_attributes",
+    "set_edge_attributes",
+    "get_edge_attributes",
+    "all_neighbors",
+    "non_neighbors",
+    "non_edges",
+    "common_neighbors",
+    "is_weighted",
+    "is_negatively_weighted",
+    "is_empty",
+    "selfloop_edges",
+    "nodes_with_selfloops",
+    "number_of_selfloops",
+    "path_weight",
+    "is_path",
+]
 _T = TypeVar("_T")
 _U = TypeVar("_U")
 
@@ -30,20 +72,18 @@ def reverse_view(digraph): ...
 def to_directed(graph): ...
 def to_undirected(graph): ...
 def create_empty_copy(G, with_data: bool = ...): ...
-def info(G, n: Incomplete | None = ...): ...
-@overload
 def set_node_attributes(G: Graph[_T], values: dict[_T, Incomplete], name: str = ...) -> None: ...
 
 # Can "Any scalar value" be enforced?
 @overload
-def set_node_attributes(G: Graph[Any], values, name: str = ...) -> None: ...
+def set_node_attributes(G: Graph[Hashable], values, name: str = ...) -> None: ...
 @overload
 def set_node_attributes(G: Graph[_T], values: dict[_T, dict[Incomplete, Incomplete]], name: None = ...) -> None: ...
 def get_node_attributes(G: Graph[_T], name: str) -> dict[_T, Incomplete]: ...
 @overload
 def set_edge_attributes(G: Graph[_T], values: dict[tuple[_T, _T], Incomplete], name: str = ...) -> None: ...
 @overload
-def set_edge_attributes(G: Graph[Any], values, name: None = ...) -> None: ...
+def set_edge_attributes(G: Graph[Hashable], values, name: None = ...) -> None: ...
 def get_edge_attributes(G: Graph[_T], name: str) -> dict[tuple[_T, _T], Incomplete]: ...
 def all_neighbors(graph: Graph[_T], node: _T) -> Iterable[_T]: ...
 def non_neighbors(graph: Graph[_T], node: _T) -> Iterable[_T]: ...
@@ -51,7 +91,7 @@ def non_edges(graph: Graph[_T]) -> Iterable[tuple[_T, _T]]: ...
 def common_neighbors(G: Graph[_T], u: _T, v: _T) -> Iterable[_T]: ...
 def is_weighted(G: Graph[_T], edge: tuple[_T, _T] | None = ..., weight: str | None = ...) -> bool: ...
 def is_negatively_weighted(G: Graph[_T], edge: tuple[_T, _T] | None = ..., weight: str | None = ...): ...
-def is_empty(G: Graph[Any]) -> bool: ...
+def is_empty(G: Graph[Hashable]) -> bool: ...
 def nodes_with_selfloops(G: Graph[_T]) -> Iterable[_T]: ...
 @overload
 def selfloop_edges(
@@ -79,4 +119,6 @@ def selfloop_edges(
 def selfloop_edges(
     G: Graph[_T], data: str, keys: Literal[True], default: _U | None = None
 ) -> Iterable[tuple[_T, _T, int, _U]]: ...
-def number_of_selfloops(G: Graph[Any]) -> int: ...
+def number_of_selfloops(G: Graph[Hashable]) -> int: ...
+def is_path(G, path) -> bool: ...
+def path_weight(G, path, weight) -> int: ...
