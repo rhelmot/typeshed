@@ -2,13 +2,14 @@ from _typeshed import Incomplete
 from collections.abc import Iterator
 from typing import Generic, TypeVar, overload
 from typing_extensions import Literal
+from collections.abc import Mapping, Set as AbstractSet
 
 from networkx.classes.graph import Graph, _Edge, _NBunch, _Node
 
 _D = TypeVar("_D")
 _U = TypeVar("_U")
 
-class NodeView(Generic[_Node]):
+class NodeView(Mapping[_Node, _Node], AbstractSet[_Node]):
     def __init__(self, graph: Graph[_Node]) -> None: ...
     def __len__(self) -> int: ...
     def __iter__(self) -> Iterator[_Node]: ...
